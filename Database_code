@@ -1,0 +1,66 @@
+create database electricity;
+use electricity;
+
+CREATE TABLE meter_infoeee (
+  meter_no VARCHAR(20) PRIMARY KEY,
+  meter_location VARCHAR(20),
+  meter_type VARCHAR(20),
+  phase_code VARCHAR(20),
+  bill_type VARCHAR(20),
+  days VARCHAR(20)
+);
+
+select * from meter_infoeee ;
+
+CREATE TABLE user_accountsss (
+  ide INT PRIMARY KEY AUTO_INCREMENT,
+  user_type VARCHAR(20),
+  username VARCHAR(30),
+  name VARCHAR(30),
+  password VARCHAR(30),
+  meter_no VARCHAR(20),
+  FOREIGN KEY (meter_no) REFERENCES meter_infoeee(meter_no)
+);
+select * from user_accountsss ;
+
+
+CREATE TABLE billing_infoe (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  month VARCHAR(30),
+  units VARCHAR(20),
+  total_bill VARCHAR(20),
+  status VARCHAR(20),
+  meter_no VARCHAR(20),
+  FOREIGN KEY (meter_no) REFERENCES meter_infoeee(meter_no)
+);
+select * from billing_infoe ;
+
+
+CREATE TABLE customer_detailss (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(20),
+  address VARCHAR(50),
+  city VARCHAR(30),
+  state VARCHAR(30),
+  email VARCHAR(50),
+  phone VARCHAR(30),
+  meter_no VARCHAR(20),
+  FOREIGN KEY (meter_no) REFERENCES meter_infoeee(meter_no)
+);
+select * from customer_detailss ;
+
+
+CREATE TABLE tax (
+  cost_per_unit VARCHAR(20),
+  meter_rent VARCHAR(20),
+  service_charge VARCHAR(20),
+  service_tax VARCHAR(20),
+  swacch_bharat_cess VARCHAR(20),
+  fixed_tax VARCHAR(20)
+);
+
+INSERT INTO tax (cost_per_unit, meter_rent, service_charge, service_tax, swacch_bharat_cess, fixed_tax) 
+VALUES ('0.05', '50', '100', '5', '2', '20');
+
+
+select * from tax ;
